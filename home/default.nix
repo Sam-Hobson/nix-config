@@ -6,6 +6,7 @@ let
 in {
    imports = [
      ./shell.nix
+     ./tmux.nix
    ];
 
     # Home Manager needs a bit of information about you and the paths it should
@@ -25,8 +26,6 @@ in {
     # The home.packages option allows you to install Nix packages into your
     # environment.
     home.packages = [
-      pkgs.zsh-powerlevel10k
-
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.
       # pkgs.hello
@@ -45,21 +44,6 @@ in {
       # '')
     ];
   
-    # Home Manager is pretty good at managing dotfiles. The primary way to manage
-    # plain files is through 'home.file'.
-    home.file = {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
-  
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idletimeout=3600000
-      # '';
-    };
-  
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. These will be explicitly sourced when using a
     # shell provided by Home Manager. If you don't want to manage your shell
@@ -77,28 +61,6 @@ in {
     #  /etc/profiles/per-user/sam/etc/profile.d/hm-session-vars.sh
     #
     home.sessionVariables = {
-    };
-
-    programs.tmux = {
-      enable = true;
-      terminal = "screen-256color";
-      escapeTime = 0;
-      baseIndex = 1;
-      shell = "${pkgs.zsh}/bin/zsh";
-      extraConfig = ''
-        set -ga terminal-overrides ",screen-256color*:Tc"
-        set -g mouse on
-        setw -g pane-base-index 1
-
-        set-window-option -g mode-keys vi
-        bind -T copy-mode-vi v send-keys -X begin-selection
-        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
-      '';
-    };
-
-    home.file.".local/bin/tmux-sessionizer" = {
-      source = "${dotfiles}/bin/tmux-sessionizer";
-      executable = true;
     };
   
     # Let Home Manager install and manage itself.

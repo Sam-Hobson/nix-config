@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ config, pkgs, dotfiles, ... }:
+
 let
   shellAliases = {
     l = "ls -l";
@@ -6,6 +7,11 @@ let
   };
   home = "/home/sam";
 in {
+    home.packages = [
+      pkgs.zsh-powerlevel10k
+    ];
+
+
     home.file.".p10k.zsh".source = "${dotfiles}/zsh/.p10k.zsh";
 
     home.sessionPath = [
