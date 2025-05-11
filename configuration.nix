@@ -117,6 +117,9 @@
     keepassxc
     unzip
     tree
+    file
+    xclip
+    zsh
 
     (python311.withPackages (ps: with ps; [
       numpy
@@ -128,6 +131,10 @@
   ];
 
   environment.variables.EDITOR = "nvim";
+
+  environment.shells = with pkgs; [ bash zsh ];
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
 
   programs.git = {
     enable = true;

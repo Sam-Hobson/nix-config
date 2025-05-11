@@ -5,6 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    
+    dotfiles = {
+      url = "./.dotfiles";
+      flake = false;
+    };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -12,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, dotfiles, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -30,6 +35,7 @@
       homeConfigurations = {
         sam = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
+	  extraSpecialArgs = { inherit dotfiles; };
           modules = [ ./home.nix ];
         };
       };
