@@ -2,7 +2,7 @@
 
 let
   username = "sam";
-  home = "/home/sam";
+  home = "/home/${username}";
 in {
    imports = [
      ./shell.nix
