@@ -1,13 +1,13 @@
 { config, pkgs, dotfiles, ... }:
 
 let
-  shellAliases = {
-    l = "ls -l";
-    ll = "ls -lAh";
-  };
   username = "sam";
   home = "/home/sam";
 in {
+   imports = [
+     ./shell.nix
+   ];
+
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     home.username = username;
@@ -78,36 +78,6 @@ in {
     #
     home.sessionVariables = {
     };
-
-    home.file.".p10k.zsh".source = "${dotfiles}/zsh/.p10k.zsh";
-
-    home.sessionPath = [
-      "$HOME/.local/bin"
-    ];
-  
-    programs.bash = {
-      enable = true;
-      shellAliases = shellAliases;
-    };
-
-    programs.zsh = {
-      enable = true;
-      shellAliases = shellAliases;
-      enableCompletion = true;
-      syntaxHighlighting.enable = true;
-
-      plugins = [
-        {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-	}
-      ];
-    };
-
-    programs.zsh.initContent = ''
-      test -f ${home}/.p10k.zsh && source ${home}/.p10k.zsh
-    '';
 
     programs.tmux = {
       enable = true;
