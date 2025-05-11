@@ -5,11 +5,13 @@ let
     l = "ls -l";
     ll = "ls -lAh";
   };
+  username = "sam";
+  home = "/home/sam";
 in {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
-    home.username = "sam";
-    home.homeDirectory = "/home/sam";
+    home.username = username;
+    home.homeDirectory = home;
   
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
@@ -23,6 +25,8 @@ in {
     # The home.packages option allows you to install Nix packages into your
     # environment.
     home.packages = [
+      pkgs.zsh-powerlevel10k
+
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.
       # pkgs.hello
@@ -74,6 +78,12 @@ in {
     #
     home.sessionVariables = {
     };
+
+    home.file.".p10k.zsh".source = "${dotfiles}/zsh/.p10k.zsh";
+
+    home.sessionPath = [
+      "$HOME/.local/bin"
+    ];
   
     programs.bash = {
       enable = true;
@@ -83,9 +93,21 @@ in {
     programs.zsh = {
       enable = true;
       shellAliases = shellAliases;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
+
+      plugins = [
+        {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+	}
+      ];
     };
 
-    home.file.".p10k.zsh".source = "${dotfiles}/zsh/.p10k.zsh";
+    programs.zsh.initContent = ''
+      test -f ${home}/.p10k.zsh && source ${home}/.p10k.zsh
+    '';
 
     programs.tmux = {
       enable = true;
@@ -104,7 +126,7 @@ in {
       '';
     };
 
-    home.file."bin/tmux-sessionizer" = {
+    home.file.".local/bin/tmux-sessionizer" = {
       source = "${dotfiles}/bin/tmux-sessionizer";
       executable = true;
     };

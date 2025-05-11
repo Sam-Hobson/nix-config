@@ -7,7 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
     dotfiles = {
-      url = "./.dotfiles";
+      url = "path:/home/sam/.dotfiles";
       flake = false;
     };
 
@@ -36,7 +36,7 @@
         sam = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
 	  extraSpecialArgs = { inherit dotfiles; };
-          modules = [ ./home.nix ];
+          modules = [ ./home/default.nix ];
         };
       };
 

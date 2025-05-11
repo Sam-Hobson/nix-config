@@ -3,14 +3,15 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "path": "./.dotfiles",
+        "lastModified": 1746934652,
+        "narHash": "sha256-F7AYxsqtI4RThy5n3sCZM8hOYhIx0ds9rgrXznPcX/Y=",
+        "path": "/home/sam/.dotfiles",
         "type": "path"
       },
       "original": {
-        "path": "./.dotfiles",
+        "path": "/home/sam/.dotfiles",
         "type": "path"
-      },
-      "parent": []
+      }
     },
     "home-manager": {
       "inputs": {
