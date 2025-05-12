@@ -3,12 +3,12 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+	  ./configuration/fonts.nix
+	  ./configuration/gnome.nix
     ];
 
   # Bootloader.
@@ -41,20 +41,6 @@
     LC_PAPER = "en_AU.UTF-8";
     LC_TELEPHONE = "en_AU.UTF-8";
     LC_TIME = "en_AU.UTF-8";
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "au";
-    variant = "";
-    options = "caps:swapescape";
   };
 
   # Enable CUPS to print documents.
@@ -121,6 +107,7 @@
     xclip
     zsh
 	ripgrep
+	rustup
 
     (python311.withPackages (ps: with ps; [
       numpy
