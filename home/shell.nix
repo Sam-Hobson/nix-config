@@ -4,6 +4,7 @@ let
   shellAliases = {
     l = "ls -l";
     ll = "ls -lAh";
+	open = "xdg-open";
   };
 in {
     home.packages = [
@@ -16,7 +17,7 @@ in {
     home.sessionPath = [
       "$HOME/.local/bin"
     ];
-  
+
     programs.bash = {
       enable = true;
       shellAliases = shellAliases;

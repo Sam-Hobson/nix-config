@@ -3,7 +3,7 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1747051190,
+        "lastModified": 1747052125,
         "narHash": "sha256-NOnFCsQ6acu/pRi217ytuEGnetU9h4k9sUqJomHGp9U=",
         "path": "/home/sam/.dotfiles",
         "type": "path"
@@ -20,11 +20,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747021744,
-        "narHash": "sha256-IDsM/9/tHQBlhG3tXI2fTM84AUN1uRa7JDPT1LMlGes=",
+        "lastModified": 1747081732,
+        "narHash": "sha256-VnR33UmH0KzvTuVg+6oYkDVpnPuHanQisNUXytCRBPQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "fb061f555f821fe4fb49f8f6f2a0cc3d5728bd52",
+        "rev": "f0a7db5ec1d369721e770a45e4d19f8e48186a69",
         "type": "github"
       },
       "original": {
@@ -86,11 +86,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747048617,
-        "narHash": "sha256-F75DsvLCM7Tx76695/KdTItEbBCfWy6lL29lBjU9L50=",
+        "lastModified": 1747071553,
+        "narHash": "sha256-EMIzJ+F2DTuOSPD608HaAra9cah87Emz8GjYNGtxpLo=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "4edac123b403ff057a4752aaeca4123b5ffc59fe",
+        "rev": "50065c8bee3f5c20d29bce19037447b2c2006c48",
         "type": "github"
       },
       "original": {
