@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    
+
     dotfiles = {
       url = "path:/home/sam/.dotfiles";
       flake = false;
@@ -31,7 +31,7 @@
           modules = [ ./configuration.nix ];
         };
       };
-  
+
       homeConfigurations = {
         sam = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
