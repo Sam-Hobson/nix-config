@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./configuration/fonts.nix
     ./configuration/gnome.nix
+    ./configuration/programming.nix
   ];
 
   # Bootloader.
@@ -106,15 +107,6 @@
     ripgrep
     rustup
     openssl
-    tree-sitter
-    gnumake
-    lua5_1
-    luarocks
-    go
-
-    (python311.withPackages
-      (ps: with ps; [ numpy pandas jupyterlab tensorflow matplotlib ]))
-
   ];
 
   environment.variables.EDITOR = "nvim";
