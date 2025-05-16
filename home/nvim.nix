@@ -1,5 +1,4 @@
-{ config, pkgs, dotfiles, ... }:
-{
+{ config, pkgs, dotfiles, ... }: {
   home.file.".config/nvim/init.lua".source = "${dotfiles}/nvim/init.lua";
   home.file.".config/nvim/lua".source = "${dotfiles}/nvim/lua";
   home.file.".config/nvim/snippets".source = "${dotfiles}/nvim/snippets";

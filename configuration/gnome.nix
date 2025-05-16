@@ -1,6 +1,5 @@
 # See: https://wiki.nixos.org/wiki/GNOME
-{ config, pkgs, inputs, ... }:
-{
+{ config, pkgs, inputs, ... }: {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

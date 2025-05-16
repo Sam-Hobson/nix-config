@@ -2,14 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-	  ./configuration/fonts.nix
-	  ./configuration/gnome.nix
-    ];
+{ config, pkgs, inputs, ... }: {
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./configuration/fonts.nix
+    ./configuration/gnome.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -75,8 +73,7 @@
     isNormalUser = true;
     description = "sam";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
+    packages = with pkgs; [ ];
   };
 
   # Install firefox.
@@ -106,16 +103,18 @@
     file
     xclip
     zsh
-	ripgrep
-	rustup
+    ripgrep
+    rustup
+    openssl
+    tree-sitter
+    gnumake
+    lua5_1
+    luarocks
+    go
 
-    (python311.withPackages (ps: with ps; [
-      numpy
-      pandas
-      jupyterlab
-      tensorflow
-      matplotlib
-    ]))
+    (python311.withPackages
+      (ps: with ps; [ numpy pandas jupyterlab tensorflow matplotlib ]))
+
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -167,7 +166,8 @@
     serviceConfig = {
       Type = "oneshot";
       User = "sam";
-      ExecStart = "${pkgs.git}/bin/git clone https://github.com/Sam-Hobson/.dotfiles.git /home/sam/.dotfiles";
+      ExecStart =
+        "${pkgs.git}/bin/git clone https://github.com/Sam-Hobson/.dotfiles.git /home/sam/.dotfiles";
       RemainAfterExit = true;
     };
   };
