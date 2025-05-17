@@ -2,8 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }: {
-  imports = [ # Include the results of the hardware scan.
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./configuration/fonts.nix
     ./configuration/gnome.nix
@@ -67,13 +74,19 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sam = {
     isNormalUser = true;
     description = "sam";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [ ];
   };
 
@@ -107,11 +120,16 @@
     ripgrep
     rustup
     openssl
+    nodejs
+    yarn
   ];
 
   environment.variables.EDITOR = "nvim";
 
-  environment.shells = with pkgs; [ bash zsh ];
+  environment.shells = with pkgs; [
+    bash
+    zsh
+  ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
@@ -158,11 +176,9 @@
     serviceConfig = {
       Type = "oneshot";
       User = "sam";
-      ExecStart =
-        "${pkgs.git}/bin/git clone https://github.com/Sam-Hobson/.dotfiles.git /home/sam/.dotfiles";
+      ExecStart = "${pkgs.git}/bin/git clone https://github.com/Sam-Hobson/.dotfiles.git /home/sam/.dotfiles";
       RemainAfterExit = true;
     };
   };
   systemd.services.cloneDotfiles.enable = true;
 }
-

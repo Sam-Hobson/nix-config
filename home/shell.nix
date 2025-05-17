@@ -4,7 +4,7 @@ let
   shellAliases = {
     l = "ls -l";
     ll = "ls -lAh";
-    open = "xdg-open";
+    open = "open || xdg-open";
   };
 in {
   home.packages = [ pkgs.zsh-powerlevel10k ];
