@@ -168,17 +168,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
-  # This is a service to clone my dotfiles
-  systemd.services.cloneDotfiles = {
-    description = "Clone dotfiles repository";
-    after = [ "network.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "sam";
-      ExecStart = "${pkgs.git}/bin/git clone https://github.com/Sam-Hobson/.dotfiles.git /home/sam/.dotfiles";
-      RemainAfterExit = true;
-    };
-  };
-  systemd.services.cloneDotfiles.enable = true;
 }
