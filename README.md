@@ -21,3 +21,12 @@ nix flake update
 
 home-manager switch --flake .
 ```
+
+## Clean up old nix builds
+```sh
+home-manager expire-generations "now"
+
+nix-collect-garbage -d
+
+nix store optimise
+```
